@@ -128,34 +128,34 @@ const BLOCKED_BY_TAB={compra:new Set(['04'])};
 // Datos precargados desde 2.xlsx (28/05/2026)
 // compradas_sig = inspeccionadas en mes N y compradas en mes N+1
 const VPP_PRECARGADO = {
-  "2025-05":{"creadas":7414,"inspeccionadas":1686,"compradas":834,"compradas_sig":188},
-  "2025-06":{"creadas":6700,"inspeccionadas":1512,"compradas":775,"compradas_sig":116},
-  "2025-07":{"creadas":6825,"inspeccionadas":1358,"compradas":632,"compradas_sig":55},
-  "2025-08":{"creadas":7620,"inspeccionadas":1807,"compradas":925,"compradas_sig":106},
-  "2025-09":{"creadas":6086,"inspeccionadas":1503,"compradas":668,"compradas_sig":211},
-  "2025-10":{"creadas":7201,"inspeccionadas":1809,"compradas":963,"compradas_sig":73},
-  "2025-11":{"creadas":6715,"inspeccionadas":1748,"compradas":920,"compradas_sig":49},
-  "2025-12":{"creadas":5983,"inspeccionadas":1523,"compradas":841,"compradas_sig":52},
-  "2026-01":{"creadas":6820,"inspeccionadas":1714,"compradas":859,"compradas_sig":71},
-  "2026-02":{"creadas":5869,"inspeccionadas":1382,"compradas":663,"compradas_sig":81},
-  "2026-03":{"creadas":6962,"inspeccionadas":1748,"compradas":758,"compradas_sig":225},
-  "2026-04":{"creadas":6710,"inspeccionadas":1874,"compradas":953,"compradas_sig":112},
+  "2025-05":{"creadas":7414,"inspeccionadas":1771,"compradas":839,"compradas_sig":226},
+  "2025-06":{"creadas":6737,"inspeccionadas":1542,"compradas":780,"compradas_sig":119},
+  "2025-07":{"creadas":6788,"inspeccionadas":1394,"compradas":641,"compradas_sig":66},
+  "2025-08":{"creadas":7620,"inspeccionadas":1866,"compradas":937,"compradas_sig":123},
+  "2025-09":{"creadas":6087,"inspeccionadas":1573,"compradas":690,"compradas_sig":228},
+  "2025-10":{"creadas":7201,"inspeccionadas":1854,"compradas":989,"compradas_sig":69},
+  "2025-11":{"creadas":6715,"inspeccionadas":1791,"compradas":928,"compradas_sig":59},
+  "2025-12":{"creadas":5982,"inspeccionadas":1561,"compradas":841,"compradas_sig":67},
+  "2026-01":{"creadas":6820,"inspeccionadas":1748,"compradas":881,"compradas_sig":69},
+  "2026-02":{"creadas":5869,"inspeccionadas":1395,"compradas":675,"compradas_sig":75},
+  "2026-03":{"creadas":6963,"inspeccionadas":1809,"compradas":792,"compradas_sig":224},
+  "2026-04":{"creadas":6709,"inspeccionadas":1928,"compradas":970,"compradas_sig":121},
   "2026-05":{"creadas":6127,"inspeccionadas":1738,"compradas":647,"compradas_sig":0}
 };
 
 const COMPRA_PRECARGADO = {
-  "2025-05":{"creadas":1984,"inspeccionadas":1437,"compradas":767,"compradas_sig":0},
-  "2025-06":{"creadas":1240,"inspeccionadas":997,"compradas":498,"compradas_sig":0},
-  "2025-07":{"creadas":793,"inspeccionadas":593,"compradas":258,"compradas_sig":0},
-  "2025-08":{"creadas":869,"inspeccionadas":711,"compradas":250,"compradas_sig":0},
-  "2025-09":{"creadas":665,"inspeccionadas":579,"compradas":284,"compradas_sig":0},
-  "2025-10":{"creadas":1037,"inspeccionadas":870,"compradas":385,"compradas_sig":0},
-  "2025-11":{"creadas":884,"inspeccionadas":760,"compradas":311,"compradas_sig":0},
-  "2025-12":{"creadas":784,"inspeccionadas":669,"compradas":364,"compradas_sig":0},
-  "2026-01":{"creadas":1030,"inspeccionadas":851,"compradas":448,"compradas_sig":0},
-  "2026-02":{"creadas":668,"inspeccionadas":583,"compradas":287,"compradas_sig":0},
-  "2026-03":{"creadas":1060,"inspeccionadas":800,"compradas":372,"compradas_sig":0},
-  "2026-04":{"creadas":1008,"inspeccionadas":783,"compradas":427,"compradas_sig":0},
+  "2025-05":{"creadas":1984,"inspeccionadas":1442,"compradas":767,"compradas_sig":0},
+  "2025-06":{"creadas":1240,"inspeccionadas":1001,"compradas":498,"compradas_sig":0},
+  "2025-07":{"creadas":793,"inspeccionadas":603,"compradas":258,"compradas_sig":0},
+  "2025-08":{"creadas":869,"inspeccionadas":713,"compradas":250,"compradas_sig":0},
+  "2025-09":{"creadas":665,"inspeccionadas":580,"compradas":284,"compradas_sig":0},
+  "2025-10":{"creadas":1037,"inspeccionadas":918,"compradas":385,"compradas_sig":0},
+  "2025-11":{"creadas":884,"inspeccionadas":775,"compradas":311,"compradas_sig":0},
+  "2025-12":{"creadas":784,"inspeccionadas":670,"compradas":364,"compradas_sig":0},
+  "2026-01":{"creadas":1030,"inspeccionadas":857,"compradas":448,"compradas_sig":0},
+  "2026-02":{"creadas":668,"inspeccionadas":584,"compradas":287,"compradas_sig":0},
+  "2026-03":{"creadas":1060,"inspeccionadas":909,"compradas":372,"compradas_sig":0},
+  "2026-04":{"creadas":1008,"inspeccionadas":786,"compradas":427,"compradas_sig":0},
   "2026-05":{"creadas":913,"inspeccionadas":714,"compradas":385,"compradas_sig":0}
 };
 
@@ -190,7 +190,7 @@ function processOpp(rows){
     if(!key) return;
     add(key,'creadas');
     const fi=r['Fecha Inicio Inspección'],fci=r['Fecha de creación de inspección'];
-    if(fi&&fci&&sameMonthVals(fi,r['Fecha de creación'])&&sameMonthVals(fci,r['Fecha de creación']))
+    if(fi&&fci&&sameMonthVals(fi,fci))
       add(key,'inspeccionadas');
     const et=(r['Etapa']||'').trim().toLowerCase();
     const freg=r['Registro de etapas Oportunidad (por columna Oportunidad).Fecha de inicio'];
@@ -272,7 +272,7 @@ function processVpp(rows){
     add(key,'creadas');
     const fi=r['Oportunidad de compra.Fecha Inicio Inspección'];
     const fci=r['Oportunidad de compra.Fecha de creación de inspección'];
-    const inspMismoMes=fi&&fci&&sameMonthVals(fi,r['Fecha VPP'])&&sameMonthVals(fci,r['Fecha VPP']);
+    const inspMismoMes=fi&&fci&&sameMonthVals(fi,fci);
     if(inspMismoMes) add(key,'inspeccionadas');
     const et=(r['Etapa Oportunidad de compra']||'').trim().toLowerCase();
     const freg=r['Oportunidad de compra.Registro de etapas Oportunidad (por columna Oportunidad).Fecha de inicio'];
